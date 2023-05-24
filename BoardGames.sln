@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{A9F541A5-900
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoardGames.Server", "Src\BoardGames.Server\BoardGames.Server.csproj", "{DBA7F582-A98A-4AD7-8DFF-CB59B65C99AB}"
 EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "BoardGames.AngularClient", "Src\BoardGames.AngularClient\BoardGames.AngularClient.esproj", "{5CCB4A74-26B3-4AD3-A2CA-D61014534763}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,12 @@ Global
 		{DBA7F582-A98A-4AD7-8DFF-CB59B65C99AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBA7F582-A98A-4AD7-8DFF-CB59B65C99AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBA7F582-A98A-4AD7-8DFF-CB59B65C99AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CCB4A74-26B3-4AD3-A2CA-D61014534763}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CCB4A74-26B3-4AD3-A2CA-D61014534763}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CCB4A74-26B3-4AD3-A2CA-D61014534763}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{5CCB4A74-26B3-4AD3-A2CA-D61014534763}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CCB4A74-26B3-4AD3-A2CA-D61014534763}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CCB4A74-26B3-4AD3-A2CA-D61014534763}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{CDE173CD-D31E-44AC-8A73-ADD7971F07C5} = {A9F541A5-9006-48B7-AD08-7BFA8B4F88FB}
 		{DBA7F582-A98A-4AD7-8DFF-CB59B65C99AB} = {A9F541A5-9006-48B7-AD08-7BFA8B4F88FB}
+		{5CCB4A74-26B3-4AD3-A2CA-D61014534763} = {A9F541A5-9006-48B7-AD08-7BFA8B4F88FB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C2795F36-30F6-4477-9977-FDAAA164E16F}
