@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoardGames.AleaEvangelii", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{A9F541A5-9006-48B7-AD08-7BFA8B4F88FB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoardGames.Server", "Src\BoardGames.Server\BoardGames.Server.csproj", "{DBA7F582-A98A-4AD7-8DFF-CB59B65C99AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,12 +19,17 @@ Global
 		{CDE173CD-D31E-44AC-8A73-ADD7971F07C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDE173CD-D31E-44AC-8A73-ADD7971F07C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDE173CD-D31E-44AC-8A73-ADD7971F07C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBA7F582-A98A-4AD7-8DFF-CB59B65C99AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBA7F582-A98A-4AD7-8DFF-CB59B65C99AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBA7F582-A98A-4AD7-8DFF-CB59B65C99AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBA7F582-A98A-4AD7-8DFF-CB59B65C99AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{CDE173CD-D31E-44AC-8A73-ADD7971F07C5} = {A9F541A5-9006-48B7-AD08-7BFA8B4F88FB}
+		{DBA7F582-A98A-4AD7-8DFF-CB59B65C99AB} = {A9F541A5-9006-48B7-AD08-7BFA8B4F88FB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C2795F36-30F6-4477-9977-FDAAA164E16F}
