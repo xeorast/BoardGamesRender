@@ -4,8 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 const routes: Routes = [
-  { path: '', loadChildren: () => import( './ae-waitroom/ae-waitroom.module' ).then( m => m.AeWaitroomModule ) },
-  { path: ':room-id', loadChildren: () => import( './ae-room/ae-room.module' ).then( m => m.AeRoomModule ) },
+  { path: '', title: 'Lobby | Alea Evangelii', loadChildren: () => import( './ae-waitroom/ae-waitroom.module' ).then( m => m.AeWaitroomModule ) },
+  { path: ':room-id', title: 'Pokój :room-id | Alea Evangelii', loadChildren: () => import( './ae-room/ae-room.module' ).then( m => m.AeRoomModule ) },
 ];
 
 @NgModule( {
