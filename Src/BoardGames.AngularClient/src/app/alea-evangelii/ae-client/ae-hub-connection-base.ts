@@ -27,6 +27,10 @@ export abstract class AeHubConnectionBase {
         return fromPromise( promise )
     }
 
+    disconnect() {
+        this.hubConnection.stop()
+    }
+
 }
 
 export interface JoinResult {

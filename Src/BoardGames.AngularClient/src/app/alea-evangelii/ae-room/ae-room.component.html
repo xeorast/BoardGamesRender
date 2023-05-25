@@ -1,0 +1,10 @@
+<p><a href="">Powrót</a></p>
+<p>Pokój nr {{roomId}}</p>
+<ng-container *ngIf="game">
+    <p>Grasz jako: {{game.playingAs}}</p>
+    <p>
+        Teraz gra: {{game.nowPlaying}}
+        <span *ngIf="game.playingAs == game.nowPlaying">(twój ruch)</span>
+    </p>
+    <app-alea-evangelii-board [game]="game"></app-alea-evangelii-board>
+</ng-container>

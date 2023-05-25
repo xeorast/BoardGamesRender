@@ -1,5 +1,5 @@
 import * as signalR from "@microsoft/signalr";
-import { Subject } from "rxjs";
+import { ReplaySubject, Subject } from "rxjs";
 import { Board } from "../logic/board";
 import { Game, MoveSummary } from "../logic/game";
 import { AeHubConnectionBase, JoinResult } from "./ae-hub-connection-base";
@@ -12,7 +12,7 @@ export class AeHubConnection extends AeHubConnectionBase {
 
     private _game?: Game
     private _roomId?: number
-    private _joinedSubject = new Subject<JoinResult>()
+    private _joinedSubject = new ReplaySubject<JoinResult>( 1 )
     private _movePerformedSubject = new Subject<MoveSummary>()
     private _disconnectedSubject = new Subject<string>()
 

@@ -11,7 +11,8 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     RouterModule.forRoot( [
-      { path: 'home', loadChildren: () => import( './home/home.module' ).then( m => m.HomeModule ) }
+      { path: '', loadChildren: () => import( './home/home.module' ).then( m => m.HomeModule ) },
+      { path: 'alea-evangelii-room', loadChildren: () => import( './alea-evangelii/ae-room/ae-room.module' ).then( m => m.AeRoomModule ) },
     ] )
   ],
   providers: [],
