@@ -1,0 +1,146 @@
+@use "crossed-square.scss" as cross;
+
+$field-zindex: 0;
+$piece-zindex: 1;
+$selected-piece-zindex: 2;
+$selecting-piece-zindex: 3;
+
+.board-frame {
+    --borders: #461f0f;
+    background-color: #c5763e;
+    padding: 20px;
+    border: solid 3px var(--borders);
+    width: 75%;
+    margin: auto
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(var(--board-width), minmax(0, 1fr));
+    grid-template-rows: repeat(var(--board-height), minmax(0, 1fr));
+    gap: 3px;
+    background-color: var(--borders);
+    border: solid 3px var(--borders);
+    isolation: isolate;
+}
+
+.field {
+    z-index: $field-zindex;
+    background-color: #daa764;
+    aspect-ratio: 1;
+
+    &.corner-field {
+        background-color: #bd5e58;
+        @include cross.crossed-square(3px, var(--borders));
+    }
+
+    &.can-move-to {
+        filter: brightness(125%)
+    }
+
+    &.can-move-to:hover {
+        filter: brightness(150%)
+    }
+}
+
+.piece {
+    z-index: $piece-zindex;
+    --shadow-color: black;
+    --border-shadow: -1px 1px 3px -1px white;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: var(--border-shadow), -1px 1px 4px var(--shadow-color);
+    transition: transform .25s;
+
+    &::before {
+        content: '';
+        border-radius: 50%;
+        position: absolute;
+    }
+}
+
+.piece.attacker {
+    $piece-color: #301900;
+    $accent-color: #d5d6be;
+    $piece-border: 3px;
+    background-color: $piece-color;
+    border: solid $piece-border $piece-color;
+
+    &::before {
+        background-color: $accent-color;
+        box-shadow: 0 0 4px $accent-color;
+        width: 80%;
+        height: 90%;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    &::after {
+        content: '';
+        border-radius: 50%;
+        position: absolute;
+        background-color: $piece-color;
+        box-shadow: 0 0 4px $piece-color;
+        width: 85%;
+        height: 85%;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
+.piece.defender {
+    $piece-color: #eeeed9;
+    background-color: #d2d4bc;
+
+    &::before {
+        background-color: $piece-color;
+        width: 90%;
+        height: 90%;
+        right: 0;
+    }
+}
+
+.piece.commander {
+    @extend .defender;
+    container-type: inline-size;
+
+    &::after {
+        color: black;
+        content: '♔';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        font-weight: 800;
+    }
+}
+
+@container (width>30px) {
+    .piece.commander::after {
+        font-size: 25px
+    }
+}
+
+@container (width>40px) {
+    .piece.commander::after {
+        font-size: 33px
+    }
+}
+
+@container (width>50px) {
+    .piece.commander::after {
+        font-size: 40px
+    }
+}
+
+.piece.selectable:hover,
+.piece.selected {
+    z-index: $selected-piece-zindex;
+    transform: translate(20%, -10%);
+    box-shadow: var(--border-shadow), -2px 2px 4px 1px var(--shadow-color);
+}
+
+.piece.selectable:hover {
+    z-index: $selecting-piece-zindex;
+}

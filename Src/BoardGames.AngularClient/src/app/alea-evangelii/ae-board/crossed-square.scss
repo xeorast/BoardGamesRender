@@ -1,0 +1,29 @@
+@use "sass:math";
+
+@mixin crossed-square($thickness, $color) {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    $root2: math.sqrt(2);
+
+    &::before,
+    &::after {
+        position: absolute;
+        content: '';
+        width: $root2*100%;
+        height: $thickness;
+        background-color: $color;
+    }
+
+    $exceeding: math.div($root2 - 1, 2 * $root2) * 100%;
+
+    &::before {
+        transform: translateX(-$exceeding) rotate(45deg);
+    }
+
+    &::after {
+        transform: translateX(-$exceeding) rotate(-45deg);
+    }
+}
