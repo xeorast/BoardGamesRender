@@ -9,9 +9,18 @@ import { Position } from '../logic/types';
 } )
 export class AeBoardComponent implements OnInit {
 
+  private _game?: Game;
+  private _fields?: AeFieldModel[];
+
   @Input()
-  public game?: Game
-  public get fields() { return this.game && this.generateFields( this.game ) }
+  public get game(): Game | undefined { return this._game; }
+  public set game( value: Game | undefined ) {
+    this._game = value;
+    if ( value ) {
+      this._fields = this.generateFields( value )
+    }
+  }
+  public get fields() { return this._fields }
 
   constructor() { }
 
