@@ -1,0 +1,11 @@
+<p>
+    <button (click)="goToNewRoom()">Dołącz do nowego pokoju</button>
+</p>
+<form #myForm="ngForm" (submit)="goToSelectedRoom()">
+    <p>
+        <span>Dołącz do pokoju nr </span>
+        <input name="roomId" type="number" [(ngModel)]="roomIdStr">
+        <button type="submit">dołącz!</button>
+    </p>
+</form>
+<p *ngIf="errorMessage" style="color: red;">{{errorMessage}}</p>
