@@ -1,14 +1,13 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
-import { AeRoomComponent } from './ae-room.component';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 import { AeBoardModule } from '../ae-board/ae-board.module';
 import { AeClientModule } from '../ae-client/ae-client.module';
+import { AeRoomComponent } from './ae-room.component';
 
 
 const routes: Routes = [
   { path: '', component: AeRoomComponent },
-  { path: ':room-id', component: AeRoomComponent }
 ];
 
 @NgModule( {

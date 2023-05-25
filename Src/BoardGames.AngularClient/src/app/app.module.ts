@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
     BrowserModule,
     RouterModule.forRoot( [
       { path: '', loadChildren: () => import( './home/home.module' ).then( m => m.HomeModule ) },
-      { path: 'alea-evangelii-room', loadChildren: () => import( './alea-evangelii/ae-room/ae-room.module' ).then( m => m.AeRoomModule ) },
+      { path: 'alea-evangelii', loadChildren: () => import( './alea-evangelii/alea-evangelii.module' ).then( m => m.AleaEvangeliiModule ) },
     ] )
   ],
   providers: [],
