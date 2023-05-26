@@ -1,10 +1,25 @@
-<p><a [routerLink]="['..']">Powrót</a></p>
-<p>Pokój nr {{roomId}}</p>
-<ng-container *ngIf="game">
-    <p>Grasz jako: {{game.playingAs}}</p>
-    <p>
-        Teraz gra: {{game.nowPlaying}}
-        <span *ngIf="game.playingAs == game.nowPlaying">(twój ruch)</span>
-    </p>
-    <app-alea-evangelii-board [game]="game"></app-alea-evangelii-board>
-</ng-container>
+<div class="game-container">
+    <div class="room-head">
+        <h2 class="game-title">Alea evangelii</h2>
+        <span>Pokój {{roomId}}</span>
+        <a [routerLink]="['..']">Powrót</a>
+    </div>
+    <ng-container *ngIf="game">
+        <app-alea-evangelii-board class="board shadow" [game]="game">
+        </app-alea-evangelii-board>
+        <div class="game-stats shadow">
+            <h4 class="now-playing-heading">Teraz gra:</h4>
+            <div class="now-playing-box">
+                <div class="player-token now-playing" [ngClass]="{'your-move':game.nowPlaying==game.playingAs}">
+                    <div class="piece" [ngClass]="game.nowPlaying"></div>
+                </div>
+            </div>
+            <div class="you-are-wrap">
+                Ty jesteś:
+                <div class="player-token inline-player-token">
+                    <div class="piece" [ngClass]="game.playingAs"></div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>
