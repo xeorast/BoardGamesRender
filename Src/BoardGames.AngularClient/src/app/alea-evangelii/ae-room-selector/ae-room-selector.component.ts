@@ -6,7 +6,7 @@ import { AeConnectionManagerService } from '../ae-connection-manager/ae-connecti
 @Component( {
   selector: 'app-ae-room-selector',
   templateUrl: './ae-room-selector.component.html',
-  styleUrls: ['./ae-room-selector.component.css']
+  styleUrls: ['./ae-room-selector.component.scss']
 } )
 export class AeRoomSelectorComponent implements OnInit {
 

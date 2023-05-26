@@ -7,7 +7,7 @@ import { AeConnectionManagerService } from '../ae-connection-manager/ae-connecti
 @Component( {
   selector: 'app-ae-room',
   templateUrl: './ae-room.component.html',
-  styleUrls: ['./ae-room.component.css']
+  styleUrls: ['./ae-room.component.scss']
 } )
 export class AeRoomComponent implements OnInit, OnDestroy {
 
