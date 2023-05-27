@@ -16,6 +16,13 @@
             </div>
         </ng-container>
     </div>
+    <div *ngIf="gameResult"
+        class="game-result"
+        [ngClass]="{'winner':isWin, 'loser':!isWin}">
+        <h3 class="display-4 game-result-title">
+            {{isWin?'Zwycięstwo':'Przegrana'}}
+        </h3>
+    </div>
 </div>
 
 <div *ngIf="!(game&&fields)">

@@ -21,6 +21,7 @@ export class AeHubConnection extends AeHubConnectionBase {
     public get joined() { return this._joinedSubject.asObservable() }
     public get movePerformed() { return this._movePerformedSubject.asObservable() }
     public get disconnected() { return this._disconnectedSubject.asObservable() }
+    public get gameEnded() { return this.game?.gameEnded }
 
     protected onJoinedAs( joinRes: JoinResult ): void {
         let board = new Board(
@@ -32,6 +33,7 @@ export class AeHubConnection extends AeHubConnectionBase {
             board,
             joinRes.joinedAs,
             joinRes.nowPlaying,
+            joinRes.winner,
             ( from, to ) => this.move( from, to ) )
 
         this._roomId = joinRes.roomId

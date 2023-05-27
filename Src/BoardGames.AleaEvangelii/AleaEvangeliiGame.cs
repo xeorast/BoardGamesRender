@@ -13,7 +13,7 @@ public class AleaEvangeliiGame
 	}
 
 	public Player? Winner { get; private set; }
-	public Player NowPlaying { get; private set; } = Player.Attacker;
+	public Player? NowPlaying { get; private set; } = Player.Attacker;
 
 	private PieceType?[] GetColumn( int column )
 	{
@@ -89,20 +89,28 @@ public class AleaEvangeliiGame
 		if ( _board.DidCommanderEscape( to, piece ) )
 		{
 			Winner = Player.Defender;
+			NowPlaying = null;
 		}
 
 		if ( _board.DidCaptureCommander( to, piece ) )
 		{
 			Winner = Player.Attacker;
+			NowPlaying = null;
 		}
 
-		NowPlaying = NowPlaying.Opposite();
+		if ( NowPlaying is not null )
+		{
+			NowPlaying = NowPlaying.Value.Opposite();
+		}
+
+		GameEndData? endData = Winner is not null ? new( Winner.Value ) : null;
 
 		return new MoveResult( new MoveSummary()
 		{
 			From = from,
 			To = to,
-			Captured = capturedPositions
+			Captured = capturedPositions,
+			GameEndData = endData,
 		} );
 	}
 
@@ -131,12 +139,15 @@ public class MoveSummary
 	public required Position From { get; set; }
 	public required Position To { get; set; }
 	public required Position[] Captured { get; set; }
+	public GameEndData? GameEndData { get; set; }
 }
+
+public record struct GameEndData( Player Winner );
 
 public record struct MoveResult( MoveSummary? Summary )
 {
 	[MemberNotNullWhen( true, nameof( Summary ) )]
-	public bool Success => Summary is not null;
+	public readonly bool Success => Summary is not null;
 
 	[JsonIgnore( Condition = JsonIgnoreCondition.WhenWritingNull )]
 	public MoveSummary? Summary { get; set; } = Summary;

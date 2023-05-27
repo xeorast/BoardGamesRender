@@ -35,7 +35,8 @@ export abstract class AeHubConnectionBase {
 
 export interface JoinResult {
     joinedAs: Player
-    nowPlaying: Player
+    nowPlaying: Player | null
+    winner: Player | null
     roomId: number
     boardState: BoardEntry[][]
 }

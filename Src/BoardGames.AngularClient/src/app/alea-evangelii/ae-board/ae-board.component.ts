@@ -22,6 +22,18 @@ export class AeBoardComponent implements OnInit {
   }
   public get fields() { return this._fields }
 
+  public get gameResult(): GameResult | null {
+    if ( !this.game?.winner ) {
+      return null
+    }
+
+    return this.game.winner == this.game.playingAs ? "Win" : "Loss"
+  }
+
+  public get isWin() {
+    return this.gameResult == 'Win'
+  }
+
   constructor() { }
 
   ngOnInit(): void {
@@ -77,3 +89,5 @@ export class AeFieldModel {
   }
 
 }
+
+export type GameResult = "Loss" | "Win"

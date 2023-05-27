@@ -1,6 +1,8 @@
 @use "crossed-square.scss" as cross;
 @use "pieces.scss" with ($piece-zindex: 1);
 
+@import url('https://fonts.cdnfonts.com/css/norse');
+
 $field-zindex: 0;
 $selected-piece-zindex: 2;
 $selecting-piece-zindex: 3;
@@ -10,6 +12,28 @@ $selecting-piece-zindex: 3;
     background-color: #c5763e;
     padding: 20px;
     border: solid 3px var(--borders);
+    position: relative;
+}
+
+.game-result {
+    position: absolute;
+    z-index: 10;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    &.winner {
+        color: var(--bs-success);
+    }
+
+    &.loser {
+        color: var(--bs-danger);
+    }
+
+    .game-result-title {
+        font-weight: 700;
+        text-shadow: 0 0 4px white, 0 0 2px black, 0 0 5px currentColor;
+    }
 }
 
 .board {

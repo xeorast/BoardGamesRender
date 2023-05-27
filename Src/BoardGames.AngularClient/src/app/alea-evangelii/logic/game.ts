@@ -1,4 +1,4 @@
-import { Observable } from "rxjs"
+import { Observable, ReplaySubject } from "rxjs"
 import { Board } from "./board"
 import { Player, Position } from "./types"
 
@@ -6,12 +6,16 @@ export class Game {
     constructor(
         public board: Board,
         public playingAs: Player,
-        public nowPlaying: Player,
+        public nowPlaying: Player | null,
+        public winner: Player | null = null,
         private moveCallback: ( from: Position, to: Position ) => Observable<MoveResult>
     ) { }
 
     private selectedPiece: Position | null = null
     private possibleMoves: Position[] = []
+    private _gameEndedSubject = new ReplaySubject<Player>()
+
+    public get gameEnded() { return this._gameEndedSubject.asObservable() }
 
     selectPiece( row: number, column: number ) {
         if ( !this.canMoveFrom( row, column ) ) {
@@ -37,6 +41,10 @@ export class Game {
     }
 
     canMoveFrom( row: number, column: number ) {
+        if ( this.winner != null ) {
+            return false
+        }
+
         if ( this.nowPlaying != this.playingAs ) {
             return false
         }
@@ -74,7 +82,16 @@ export class Game {
         for ( const captured of ms.captured ) {
             this.board.capture( captured )
         }
-        this.nowPlaying = this.nowPlaying == "attacker" ? "defender" : "attacker"
+
+        if ( ms.gameEndData ) {
+            this.winner = ms.gameEndData.winner
+            this.nowPlaying = null
+            this._gameEndedSubject.next( ms.gameEndData.winner )
+        }
+        else {
+            this.nowPlaying = this.nowPlaying == "attacker" ? "defender" : "attacker"
+        }
+
     }
 
 }
@@ -83,6 +100,11 @@ export interface MoveSummary {
     from: Position
     to: Position
     captured: Position[]
+    gameEndData: GameEndData | null
+}
+
+export interface GameEndData {
+    winner: Player
 }
 
 export interface MoveResult {

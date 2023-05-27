@@ -13,7 +13,7 @@ public interface IAleaEvangeliiClient
 	Task Disconnect( string reason );
 }
 
-public record struct AleaEvangeliiJoinResult( Player JoinedAs, string RoomId, Player NowPlaying, PieceType?[][] BoardState );
+public record struct AleaEvangeliiJoinResult( Player JoinedAs, string RoomId, Player? NowPlaying, Player? Winner, PieceType?[][] BoardState );
 
 public interface IAleaEvangeliiServer
 {
@@ -75,7 +75,12 @@ public class AleaEvangeliiHub : Hub<IAleaEvangeliiClient>, IAleaEvangeliiServer
 
 		await Groups.AddToGroupAsync( Context.ConnectionId, roomId.ToString() );
 
-		AleaEvangeliiJoinResult joinResult = new( playingAs, roomId, game.NowPlaying, board.ToArrayOfArrays() );
+		AleaEvangeliiJoinResult joinResult = new(
+			playingAs,
+			roomId,
+			game.NowPlaying,
+			game.Winner,
+			board.ToArrayOfArrays() );
 		await Clients.Caller.JoinedAs( joinResult );
 	}
 
@@ -95,6 +100,11 @@ public class AleaEvangeliiHub : Hub<IAleaEvangeliiClient>, IAleaEvangeliiServer
 		{
 			await Clients.Caller.Disconnect( "Room disappeared." );
 			Context.Abort();
+			return MoveResult.Failed;
+		}
+
+		if ( game.Winner is not null )
+		{
 			return MoveResult.Failed;
 		}
 
