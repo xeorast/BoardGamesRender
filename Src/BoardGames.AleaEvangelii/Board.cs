@@ -131,7 +131,7 @@ public class Board
 		return movingPiece is PieceType.Commander && IsCorner( targetPosition );
 	}
 
-	private bool IsCorner( Position position )
+	public bool IsCorner( Position position )
 	{
 		return position.Row == 0 && position.Column == 0
 			|| position.Row == 0 && position.Column == RightIndex

@@ -37,8 +37,17 @@ public class AleaEvangeliiGame
 
 	public bool CanMove( Position from, Position to )
 	{
+		var fieldState = _board[from];
+
 		// empty field or wrong player or no move, disallow
-		if ( NowPlaying != _board[from]?.Owner() || from == to )
+		if ( fieldState is null || NowPlaying != fieldState.Value.Owner() || from == to )
+		{
+			return false;
+		}
+
+		// corners are oly for commander
+		var piece = fieldState.Value;
+		if ( piece is not PieceType.Commander && _board.IsCorner( to ) )
 		{
 			return false;
 		}
