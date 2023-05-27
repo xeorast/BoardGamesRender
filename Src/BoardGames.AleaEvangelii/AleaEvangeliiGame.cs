@@ -47,7 +47,7 @@ public class AleaEvangeliiGame
 
 		// corners are oly for commander
 		var piece = fieldState.Value;
-		if ( piece is not PieceType.Commander && _board.IsCorner( to ) )
+		if ( piece is not PieceType.Commander && _board.IsForbidden( to ) )
 		{
 			return false;
 		}

@@ -3,7 +3,7 @@
         class="board" [ngStyle]="{'--board-width': game.board.width, '--board-height': game.board.height}">
         <ng-container *ngFor="let field of fields; let index = index;">
             <div class="field"
-                [ngClass]="{'corner-field': field.isCorner, 'can-move-to': field.canPieceBeMovedTo}"
+                [ngClass]="{'forbidden-field': field.isCorner, 'can-move-to': field.canPieceBeMovedTo}"
                 [ngStyle]="{'grid-row': field.row+1, 'grid-column': field.column+1}"
                 (click)="field.moveTo()">
             </div>

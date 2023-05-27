@@ -11,11 +11,16 @@ export class Board {
         return this.piecesMap[row][column]
     }
 
-    isCorner( row: number, column: number ) {
+    private isCorner( row: number, column: number ) {
         return row == 0 && column == 0
             || row == 0 && column == this.width - 1
             || row == this.height - 1 && column == this.width - 1
             || row == this.height - 1 && column == 0;
+    }
+
+    isForbidden( row: number, column: number ) {
+        return this.isCorner( row, column )
+            || row == Math.floor( this.height / 2 ) && column == Math.floor( this.width / 2 )
     }
 
     getMovesPosibleFrom( fromRow: number, fromColumn: number ) {
@@ -30,7 +35,7 @@ export class Board {
         let column = fromColumn
         while ( row < this.piecesMap.length
             && this.piecesMap[row][column] == null
-            && ( isCommander || !this.isCorner( row, column ) ) ) {
+            && ( isCommander || !this.isForbidden( row, column ) ) ) {
             moves.push( { row, column } )
             row += 1
         }
@@ -38,7 +43,7 @@ export class Board {
         row = fromRow - 1
         while ( row >= 0
             && this.piecesMap[row][column] == null
-            && ( isCommander || !this.isCorner( row, column ) ) ) {
+            && ( isCommander || !this.isForbidden( row, column ) ) ) {
             moves.push( { row, column } )
             row -= 1
         }
@@ -46,7 +51,7 @@ export class Board {
         row = fromRow
         column = fromColumn + 1
         while ( column < this.piecesMap[row].length
-            && ( isCommander || !this.isCorner( row, column ) ) ) {
+            && ( isCommander || !this.isForbidden( row, column ) ) ) {
             moves.push( { row, column } )
             column += 1
         }
@@ -54,7 +59,7 @@ export class Board {
         column = fromColumn - 1
         while ( column >= 0
             && this.piecesMap[row][column] == null
-            && ( isCommander || !this.isCorner( row, column ) ) ) {
+            && ( isCommander || !this.isForbidden( row, column ) ) ) {
             moves.push( { row, column } )
             column -= 1
         }

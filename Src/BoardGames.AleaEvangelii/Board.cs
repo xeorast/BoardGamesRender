@@ -139,6 +139,12 @@ public class Board
 			|| position.Row == BottomIndex && position.Column == 0;
 	}
 
+	public bool IsForbidden( Position position )
+	{
+		return IsCorner( position )
+			|| position.Row == BottomIndex / 2 && position.Column == RightIndex / 2;
+	}
+
 	public PieceType?[,] CloneFields()
 	{
 		return (PieceType?[,])_fields.Clone();

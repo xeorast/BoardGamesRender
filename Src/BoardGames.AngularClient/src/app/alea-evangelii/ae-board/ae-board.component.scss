@@ -51,7 +51,7 @@ $selecting-piece-zindex: 3;
     background-color: #daa764;
     aspect-ratio: 1;
 
-    &.corner-field {
+    &.forbidden-field {
         background-color: #bd5e58;
         @include cross.crossed-square(3px, var(--borders));
     }

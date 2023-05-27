@@ -61,7 +61,7 @@ export class AeFieldModel {
     pos: Position ) {
     this.row = pos.row
     this.column = pos.column
-    this.isCorner = game.board.isCorner( pos.row, pos.column )
+    this.isCorner = game.board.isForbidden( pos.row, pos.column )
   }
 
   public get piece() {
