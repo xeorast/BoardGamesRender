@@ -1,11 +1,22 @@
-<p>
-    <button (click)="goToNewRoom()">Dołącz do nowego pokoju</button>
-</p>
-<form #myForm="ngForm" (submit)="goToSelectedRoom()">
-    <p>
-        <span>Dołącz do pokoju nr </span>
-        <input name="roomId" type="number" [(ngModel)]="roomIdStr">
-        <button type="submit">dołącz!</button>
-    </p>
-</form>
-<p *ngIf="errorMessage" style="color: red;">{{errorMessage}}</p>
+<div class="join-container">
+    <div class="input-group">
+        <label class="input-group-text">Utwórz nowy pokój</label>
+        <button type="button" class="btn btn-outline-secondary flex-grow-1" (click)="goToNewRoom()">Utwórz</button>
+    </div>
+    <div class="d-flex align-items-center">
+        <hr class="flex-grow-1">
+        <span class="mx-1">lub</span>
+        <hr class="flex-grow-1">
+    </div>
+    <form #myForm="ngForm" (submit)="goToSelectedRoom()">
+        <div class="d-inline-block">
+            <div class="input-group">
+                <label class="input-group-text">Dołącz do pokoju nr</label>
+                <input type="number" class="form-control room-id-input"
+                    name="roomId" [(ngModel)]="roomIdStr">
+                <button class="btn btn-outline-secondary" type="submit">Dołącz</button>
+            </div>
+        </div>
+    </form>
+    <p *ngIf="errorMessage" style="color: red;">{{errorMessage}}</p>
+</div>
