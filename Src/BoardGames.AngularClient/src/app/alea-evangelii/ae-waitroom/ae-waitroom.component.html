@@ -1,3 +1,102 @@
-<p><a [routerLink]="['..']">Powrót</a></p>
-<p>Zagraj w alea evangelii</p>
-<app-ae-room-selector></app-ae-room-selector>
+<div class="container-md">
+    <div class="main-container">
+        <h2 class="game-title display-5">Zagraj w alea evangelii <a class="fs-6" [routerLink]="['..']">Powrót</a></h2>
+        <div class="room-selector card p-2 bg-transparent">
+            <img class="board mb-2" src="/assets/alea-evangelii/board.jpg" alt="zdjęcie planszy">
+            <app-ae-room-selector></app-ae-room-selector>
+        </div>
+        <div class="rules">
+            <ngb-carousel class="rules-carousel carousel slide card p-3 bg-transparent" [interval]="0">
+                <ng-template ngbSlide id="white-win">
+                    <div class="ratio ratio-16x9 rules-image">
+                        <div class="rule-img-wrap">
+                            <img src="/assets/alea-evangelii/white-win.jpg" class="d-block" alt="...">
+                        </div>
+                    </div>
+                    <div class="caption pb-3">
+                        <h5>Cel gry - obrońca:</h5>
+                        <p>Ucieczka wodzem do narożnika.</p>
+                    </div>
+                </ng-template>
+                <ng-template ngbSlide id="black-win">
+                    <div class="ratio ratio-16x9 rules-image">
+                        <div class="rule-img-wrap">
+                            <img src="/assets/alea-evangelii/black-win.jpg" class="d-block" alt="...">
+                        </div>
+                    </div>
+                    <div class="caption pb-3">
+                        <h5>Cel gry - atakujący:</h5>
+                        <p>Pojmanie wodza przez zablokowanie mu możliwości ruchu.</p>
+                    </div>
+                </ng-template>
+                <ng-template ngbSlide id="black-win2">
+                    <div class="ratio ratio-16x9 rules-image">
+                        <div class="rule-img-wrap">
+                            <img src="/assets/alea-evangelii/black-win-edge.jpg" class="d-block" alt="...">
+                        </div>
+                    </div>
+                    <div class="caption pb-3">
+                        <h5>Cel gry - atakujący:</h5>
+                        <p>Pojmanie wodza przez zablokowanie mu możliwości ruchu.</p>
+                    </div>
+                </ng-template>
+                <ng-template ngbSlide id="moving">
+                    <div class="ratio ratio-16x9 rules-image">
+                        <div class="rule-img-wrap">
+                            <img src="/assets/alea-evangelii/moving.jpg" class="d-block" alt="...">
+                        </div>
+                    </div>
+                    <div class="caption pb-3">
+                        <h5>Zasady:</h5>
+                        <p>Pionki poruszają się dowolną liczbę pól po liniach prostych.</p>
+                    </div>
+                </ng-template>
+                <ng-template ngbSlide id="capture">
+                    <div class="ratio ratio-16x9 rules-image">
+                        <div class="rule-img-wrap">
+                            <img src="/assets/alea-evangelii/capture.jpg" class="d-block" alt="...">
+                        </div>
+                    </div>
+                    <div class="caption pb-3">
+                        <h5>Zasady:</h5>
+                        <p>Bicie polega na uchwyceniu pionka przeciwnika między dwa własne pionki.</p>
+                    </div>
+                </ng-template>
+                <ng-template ngbSlide id="no-capture">
+                    <div class="ratio ratio-16x9 rules-image">
+                        <div class="rule-img-wrap">
+                            <img src="/assets/alea-evangelii/no-capture.jpg" class="d-block" alt="...">
+                        </div>
+                    </div>
+                    <div class="caption pb-3">
+                        <h5>Zasady:</h5>
+                        <p>Pionek który wejdzie między dwa pionki nie zostaje zbity.</p>
+                    </div>
+                </ng-template>
+                <ng-template ngbSlide id="corner-capture">
+                    <div class="ratio ratio-16x9 rules-image">
+                        <div class="rule-img-wrap">
+                            <img src="/assets/alea-evangelii/corner-capture.jpg" class="d-block" alt="...">
+                        </div>
+                    </div>
+                    <div class="caption pb-3">
+                        <h5>Zasady:</h5>
+                        <p>Podczas bicia pole narożne działa jak pionek przeciwnika.</p>
+                    </div>
+                </ng-template>
+                <ng-template ngbSlide id="commander-only-fields">
+                    <div class="ratio ratio-16x9 rules-image">
+                        <div class="rule-img-wrap">
+                            <img src="/assets/alea-evangelii/commander-only-fields.jpg" class="d-block" alt="...">
+                        </div>
+                    </div>
+                    <div class="caption pb-3">
+                        <h5>Zasady:</h5>
+                        <p>Przez pola narożne nie może przejechać ani się na nim zatrzymać żaden pionek oprócz dowódcy.
+                        </p>
+                    </div>
+                </ng-template>
+            </ngb-carousel>
+        </div>
+    </div>
+</div>
