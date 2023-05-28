@@ -20,7 +20,8 @@ export class AeClientService {
       : AeClientService.hubUrl
 
     let hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl( url )
+      .withUrl( url, signalR.HttpTransportType.LongPolling ) // TODO: restore websockets whenever you have hosting that supports it
+      .withAutomaticReconnect()
       .build();
 
     await hubConnection
