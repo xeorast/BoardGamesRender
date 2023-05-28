@@ -89,6 +89,11 @@ public class AleaEvangeliiHub : Hub<IAleaEvangeliiClient>, IAleaEvangeliiServer
 		if ( SuccesfulyJoinedRoom )
 		{
 			_roomStorage.LeaveRoom( RoomId, Context.ConnectionId );
+
+			if ( _roomStorage.TryGetGame( RoomId, out var game ) && game.Winner != null )
+			{
+				_roomStorage.RemoveRoomIfEmpty( RoomId );
+			}
 		}
 
 		await base.OnDisconnectedAsync( exception );

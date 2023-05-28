@@ -10,6 +10,7 @@ public interface IAERoomStorage
 	AEJoinRoomResult TryJoinRoom( string roomId, string playerId, out Player player );
 	void LeaveRoom( string roomId, string playerId );
 	bool TryGetGame( string roomId, [NotNullWhen( true )] out AleaEvangeliiGame? game );
+	void RemoveRoomIfEmpty( string roomId );
 }
 
 public enum AEJoinRoomResult
@@ -29,7 +30,7 @@ public class AERoomStorage : IAERoomStorage
 		string id;
 		do
 		{
-			id = Random.Shared.Next( 100, 1000 ).ToString();
+			id = Random.Shared.Next( 1000, 10000 ).ToString();
 		} while ( !_rooms.TryAdd( id, room ) );
 		return id;
 	}
@@ -82,6 +83,22 @@ public class AERoomStorage : IAERoomStorage
 
 		game = room.Game;
 		return true;
+	}
+
+	public void RemoveRoomIfEmpty( string roomId )
+	{
+		if ( !_rooms.TryGetValue( roomId, out var room ) )
+		{
+			return;
+		}
+
+		lock ( room )
+		{
+			if ( room.PresentPlayers.Count == 0 )
+			{
+				_ = _rooms.TryRemove( roomId, out _ );
+			}
+		}
 	}
 
 }
