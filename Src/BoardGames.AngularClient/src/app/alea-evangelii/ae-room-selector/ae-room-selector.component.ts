@@ -10,6 +10,7 @@ import { AeConnectionManagerService } from '../ae-connection-manager/ae-connecti
 } )
 export class AeRoomSelectorComponent implements OnInit {
 
+  public isConnecting = false
   public errorMessage?: string
   public roomIdStr: string = ''
   public get roomId() {
@@ -34,14 +35,17 @@ export class AeRoomSelectorComponent implements OnInit {
   }
 
   private goToRoom( roomId: number | null ) {
+    this.isConnecting = true
     this.gameClient.startConnection( roomId ).subscribe( con => {
       this.gameConnMan.gameConnection?.disconnect()
       this.gameConnMan.gameConnection = con
       con.joined.subscribe( joinRes => {
+        this.isConnecting = false
         this.router.navigate( ['/alea-evangelii', joinRes.roomId] );
       } )
       con.disconnected.subscribe( reason => {
         this.errorMessage = reason
+        this.isConnecting = false
       } )
     } )
   }

@@ -1,7 +1,10 @@
 <div class="join-container">
     <div class="input-group">
         <label class="input-group-text">Utwórz nowy pokój</label>
-        <button type="button" class="btn btn-outline-secondary flex-grow-1" (click)="goToNewRoom()">Utwórz</button>
+        <button type="button"
+            class="btn btn-outline-secondary flex-grow-1"
+            [attr.disabled]="isConnecting?'':null"
+            (click)="goToNewRoom()">Utwórz</button>
     </div>
     <div class="d-flex align-items-center">
         <hr class="flex-grow-1">
@@ -14,7 +17,9 @@
                 <label class="input-group-text">Dołącz do pokoju nr</label>
                 <input type="number" class="form-control room-id-input"
                     name="roomId" [(ngModel)]="roomIdStr">
-                <button class="btn btn-outline-secondary" type="submit">Dołącz</button>
+                <button class="btn btn-outline-secondary"
+                    type="submit"
+                    [attr.disabled]="isConnecting?'':null">Dołącz</button>
             </div>
         </div>
     </form>
