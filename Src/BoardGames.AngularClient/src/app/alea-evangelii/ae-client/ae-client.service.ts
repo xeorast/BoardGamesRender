@@ -6,7 +6,8 @@ import { AeHubConnection } from './ae-hub-connection';
 @Injectable()
 export class AeClientService {
 
-  static readonly hubUrl = '/realtime/alea-evangelii'
+  // static readonly hubUrl = '/realtime/alea-evangelii'
+  static readonly hubUrl = 'https://xeo-board-games-api.onrender.com/realtime/alea-evangelii'
 
   constructor() { }
 
@@ -20,7 +21,8 @@ export class AeClientService {
       : AeClientService.hubUrl
 
     let hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl( url, signalR.HttpTransportType.LongPolling ) // TODO: restore websockets whenever you have hosting that supports it
+      // .withUrl( url, signalR.HttpTransportType.LongPolling ) // TODO: restore websockets whenever you have hosting that supports it
+      .withUrl( url )
       .withAutomaticReconnect()
       .build();
 

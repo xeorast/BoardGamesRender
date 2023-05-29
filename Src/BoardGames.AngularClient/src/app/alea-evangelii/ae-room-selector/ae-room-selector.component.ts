@@ -35,6 +35,7 @@ export class AeRoomSelectorComponent implements OnInit {
 
   private goToRoom( roomId: number | null ) {
     this.gameClient.startConnection( roomId ).subscribe( con => {
+      this.gameConnMan.gameConnection?.disconnect()
       this.gameConnMan.gameConnection = con
       con.joined.subscribe( joinRes => {
         this.router.navigate( ['/alea-evangelii', joinRes.roomId] );
