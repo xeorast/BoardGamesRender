@@ -41,7 +41,7 @@ export class AeRoomSelectorComponent implements OnInit {
       this.gameConnMan.gameConnection = con
       con.joined.subscribe( joinRes => {
         this.isConnecting = false
-        this.router.navigate( ['/alea-evangelii', joinRes.roomId] );
+        this.router.navigate( ['/alea-evangelii', joinRes.roomId], { queryParams: { 'player': joinRes.joinedAs } } );
       } )
       con.disconnected.subscribe( reason => {
         this.errorMessage = reason
