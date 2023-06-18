@@ -22,6 +22,11 @@
         max-width: 100%;
         max-height: 100%;
     }
+
+    .selector-input {
+        max-width: 100%;
+    }
+
 }
 
 .rules {
@@ -78,7 +83,7 @@
         align-items: center;
 
         .board {
-            max-width: 50vh;
+            max-width: min(50vh, 100%);
         }
     }
 
