@@ -16,6 +16,7 @@ export abstract class AeHubConnectionBase {
     }
     private hubConnection: signalR.HubConnection
     private isCloseExpected = false
+    private hasDisconnected = false
 
     protected abstract onJoinedAs( joinRes: JoinResult ): void
     protected abstract onMovePerformed( moveSummary: MoveSummary ): void
@@ -59,6 +60,10 @@ export abstract class AeHubConnectionBase {
 
     private _onDisconnect( reason: string ) {
         this.isCloseExpected = true
+        if ( !this.hasDisconnected ) {
+            this.hasDisconnected = true
+            this.onDisconnect( reason )
+        }
     }
 
     private buildUrl() {
@@ -74,6 +79,8 @@ export abstract class AeHubConnectionBase {
     }
 
     public async BeginConnection() {
+        this.hasDisconnected = false
+
         await this.hubConnection
             .start()
             .then( () => console.log( 'Connection started' ) )
@@ -82,10 +89,8 @@ export abstract class AeHubConnectionBase {
         this.hubConnection.on( 'JoinedAs', jr => this._onJoinedAs( jr ) )
         this.hubConnection.on( 'MovePerformed', ms => this.onMovePerformed( ms ) )
         this.hubConnection.on( 'Disconnect', dr => this._onDisconnect( dr ) )
-        this.hubConnection.on( 'Disconnect', dr => this.onDisconnect( dr ) )
         this.hubConnection.onclose( err => this.onClose( err ) )
         this.hubConnection.onclose( err => this._onDisconnect( err?.message ?? 'Connection aborted.' ) )
-        this.hubConnection.onclose( err => this.onDisconnect( err?.message ?? 'Connection aborted.' ) )
     }
 
 }
